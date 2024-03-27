@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic PDF Embed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #pdf-container {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="pdf-container">
+        <!-- PDF will be dynamically embedded here -->
+    </div>
+
+    <script>
+        function embedPDF(pdfPath) {
+            var embedElement = document.createElement('embed');
+            embedElement.setAttribute('src', pdfPath);
+            embedElement.setAttribute('type', 'application/pdf');
+            embedElement.setAttribute('width', '100%');
+            embedElement.setAttribute('height', '100%');
+            document.getElementById('pdf-container').appendChild(embedElement);
+        }
+
+        embedPDF("{{ .Url}}");
+    </script>
+</body>
+</html>
