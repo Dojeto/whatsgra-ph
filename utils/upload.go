@@ -12,13 +12,14 @@ import (
 
 func Upload(filebytes []byte, fileName *string) (*string, error) {
 
-	cfg := common.DefaultConfigProvider()
+	cfg, _ := common.ConfigurationProviderFromFile("/home/dojeto/.oci/config", "DEFAULT")
 
 	client, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(cfg)
 	if err != nil {
 		fmt.Println("Error creating client:", err)
 		return nil, err
 	}
+	// /home/ubuntu/.oci
 
 	namespace := os.Getenv("NAMESPACE")
 

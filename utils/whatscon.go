@@ -57,9 +57,13 @@ func ConnectToWP() {
 				}
 				id := uuid.New()
 				UrlToLink[id.String()[0:8]] = *link
-				client.SendMessage(ctx.Background(), evt.Info.Sender, &wp.Message{
-					Conversation: proto.String(id.String()[0:8]),
+				resp, err := client.SendMessage(ctx.Background(), evt.Info.Chat, &wp.Message{
+					Conversation: proto.String("http://127.0.0.1:3000/" + id.String()[0:8]),
 				})
+				if err != nil {
+					fmt.Println(err)
+				}
+				fmt.Println(resp)
 			}
 		}
 	})
